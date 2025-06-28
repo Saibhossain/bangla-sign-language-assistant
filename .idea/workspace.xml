@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="80bea1d2-4550-4a57-9b47-950d47cbebeb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/MicroProject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/alph_to_word_fuzzyMatching_NLP.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/alphabet_to_speech.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/digit_to_speech_TTS.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/info.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/nlp_alphabet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/tim.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bangla_sign_server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bangla_signs_dataset.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bangla_words" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/HandSign_Classifier_Alphabets_RF.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/hand_digit_classifier_sorted1.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/dashboard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/load.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/lode.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/digit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2z1vSpyIvPR7bSuvXi2CsxsUwkM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.alph_to_word_fuzzyMatching_NLP.executor": "Run",
+    "Python.alphabate_to_word.executor": "Run",
+    "Python.alphabet_to_speech.executor": "Run",
+    "Python.bangla_sign_server.executor": "Run",
+    "Python.digit_to_speech_TTS.executor": "Run",
+    "Python.info.executor": "Run",
+    "Python.nlp_alphabet.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/mdsaibhossain/code/python/MicroProject/static",
+    "settings.editor.selected.configurable": "configurable.group.tools"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "PLAIN_TEXT"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/BanglaDigitAlphabet" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.alph_to_word_fuzzyMatching_NLP">
+    <configuration name="alph_to_word_fuzzyMatching_NLP" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MicroProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BanglaDigitAlphabet" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BanglaDigitAlphabet/alph_to_word_fuzzyMatching_NLP.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="alphabet_to_speech" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MicroProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BanglaDigitAlphabet" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BanglaDigitAlphabet/alphabet_to_speech.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="bangla_sign_server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MicroProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BanglaDigitAlphabet" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bangla_sign_server.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="info" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MicroProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BanglaDigitAlphabet" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BanglaDigitAlphabet/info.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="nlp_alphabet" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MicroProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BanglaDigitAlphabet" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BanglaDigitAlphabet/nlp_alphabet.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.alph_to_word_fuzzyMatching_NLP" />
+        <item itemvalue="Python.nlp_alphabet" />
+        <item itemvalue="Python.alphabet_to_speech" />
+        <item itemvalue="Python.info" />
+        <item itemvalue="Python.bangla_sign_server" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-ce3d9afa04ac-ba05f1cad1b1-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.20224.347" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="80bea1d2-4550-4a57-9b47-950d47cbebeb" name="Changes" comment="" />
+      <created>1750911395985</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750911395985</updated>
+    </task>
+    <servers />
+  </component>
+</project>

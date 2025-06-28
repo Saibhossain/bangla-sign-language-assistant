@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+joblib
+jinja2
+scikit-learn
+numpy
+gtts
+pyttsx3
+playsound3
+bnlp_toolkit
+bnnumerizer
+pyspellchecker
+(python -m uvicorn bangla_sign_server:app --reload )

@@ -1,0 +1,410 @@
+{
+    "0": {
+        "letter": "অ",
+        "variants": [
+            "য়"
+        ],
+        "sentence": "এই অঙ্গভঙ্গি দ্বারা বোঝানো হয়েছে অ বা য়।",
+        "type": "vowel",
+        "example_word": "অজগর",
+        "english_equivalent": "o"
+        
+    },
+    "1": {
+        "letter": "আ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় আ।",
+        "type": "vowel",
+        "example_word": "আম",
+        "english_equivalent": "a"
+       
+    },
+    "2": {
+        "letter": "ই",
+        "variants": [
+            "ঈ"
+        ],
+        "sentence": "এই চিহ্নটি বোঝায় ই বা ঈ।",
+        "type": "vowel",
+        "example_word": "ইলিশ",
+        "english_equivalent": "i"
+    
+    },
+    "3": {
+        "letter": "উ",
+        "variants": [
+            "ঊ"
+        ],
+        "sentence": "এই চিহ্নটি বোঝায় উ বা ঊ।",
+        "type": "vowel",
+        "example_word": "উদয়",
+        "english_equivalent": "u"
+        
+    },
+    "4": {
+        "letter": "র",
+        "variants": [
+            "ঋ",
+            "ড়",
+            "ঢ়"
+        ],
+        "sentence": "এই চিহ্নটি বোঝায় র বা তার রূপান্তর।",
+        "type": "consonant",
+        "example_word": "রথ",
+        "english_equivalent": "r"
+        
+    },
+    "5": {
+        "letter": "এ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় এ।",
+        "type": "vowel",
+        "example_word": "এলাচ",
+        "english_equivalent": "e"
+       
+    },
+    "6": {
+        "letter": "ঐ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ঐ।",
+        "type": "vowel",
+        "example_word": "ঐক্য",
+        "english_equivalent": "oi"
+        
+    },
+    "7": {
+        "letter": "ও",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ও।",
+        "type": "vowel",
+        "example_word": "ওজন",
+        "english_equivalent": "O"
+    },
+    "8": {
+        "letter": "ঔ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ঔ।",
+        "type": "vowel",
+        "example_word": "ঔষধ",
+        "english_equivalent": "Ou"
+    },
+    "9": {
+        "letter": "ক",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ক।",
+        "type": "consonant",
+        "example_word": "কলম",
+        "english_equivalent": "K"
+    },
+    "10": {
+        "letter": "খ",
+        "variants": [
+            "ক্ষ"
+        ],
+        "sentence": "এই চিহ্নটি বোঝায় খ অথবা ক্ষ।",
+        "type": "consonant",
+        "example_word": "খেলাধুলা",
+        "english_equivalent": "Kh"
+    },
+    "11": {
+        "letter": "গ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় গ।",
+        "type": "consonant",
+        "example_word": "গাছ",
+        "english_equivalent": "g"
+    },
+    "12": {
+        "letter": "ঘ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ঘ।",
+        "type": "consonant",
+        "example_word": "ঘড়ি",
+        "english_equivalent": "gh"
+    },
+    "13": {
+        "letter": "ঙ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ঙ।",
+        "type": "consonant",
+        "example_word": "ঙ্ঘাত",
+        "english_equivalent": "ng"
+    },
+    "14": {
+        "letter": "চ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় চ।",
+        "type": "consonant",
+        "example_word": "চাকা",
+        "english_equivalent": "ch"
+    },
+    "15": {
+        "letter": "ছ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ছ।",
+        "type": "consonant",
+        "example_word": "ছাতা",
+        "english_equivalent": "chh"
+    },
+    "16": {
+        "letter": "জ",
+        "variants": [
+            "য"
+        ],
+        "sentence": "এই চিহ্নটি বোঝায় জ অথবা ঝ।",
+        "type": "consonant",
+        "example_word": "জল",
+        "english_equivalent": "j"
+    },
+    "17": {
+        "letter": "ঝ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ঝ।",
+        "type": "consonant",
+        "example_word": "ঝগড়া",
+        "english_equivalent": "jh"
+    },
+    "18": {
+        "letter": "ঞ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ঞ।",
+        "type": "consonant",
+        "example_word": "জ্ঞ",
+        "english_equivalent": "nch"
+    },
+    "19": {
+        "letter": "ট",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ট।",
+        "type": "consonant",
+        "example_word": "টেবিল",
+        "english_equivalent": "t"
+    },
+    "20": {
+        "letter": "ঠ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ঠ।",
+        "type": "consonant",
+        "example_word": "ঠেলা",
+        "english_equivalent": "th"
+    },
+    "21": {
+        "letter": "ড",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ড।",
+        "type": "consonant",
+        "example_word": "ডাল",
+        "english_equivalent": "d"
+    },
+    "22": {
+        "letter": "ঢ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ঢ।",
+        "type": "consonant",
+        "example_word": "ঢাক",
+        "english_equivalent": "dh"
+    },
+    "23": {
+        "letter": "ণ",
+        "variants": [
+            "ন"
+        ],
+        "sentence": "এই চিহ্নটি বোঝায় ণ অথবা ন।",
+        "type": "consonant",
+        "example_word": "ণবর্ণ",
+        "english_equivalent": "n"
+    },
+    "24": {
+        "letter": "ত",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ত।",
+        "type": "consonant",
+        "example_word": "তাল",
+        "english_equivalent": "t"
+    },
+     "25": {
+        "letter": "থ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় থ।",
+        "type": "consonant",
+        "example_word": "থানা",
+        "english_equivalent": "th"
+    },
+    "26": {
+        "letter": "দ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় দ।",
+        "type": "consonant",
+        "example_word": "দরজা",
+        "english_equivalent": "d"
+    },
+    "27": {
+        "letter": "ধ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ধ।",
+        "type": "consonant",
+        "example_word": "ধন",
+        "english_equivalent": "dh"
+    },
+   
+    "28": {
+        "letter": "প",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় প।",
+        "type": "consonant",
+        "example_word": "পাতা",
+        "english_equivalent": "p"
+    },
+    "29": {
+        "letter": "ফ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ফ।",
+        "type": "consonant",
+        "example_word": "ফুল",
+        "english_equivalent": "ph"
+    },
+    "30": {
+        "letter": "ব",
+        "variants": ["ভ"],
+        "sentence": "এই চিহ্নটি বোঝায় ব।",
+        "type": "consonant",
+        "example_word": "বই",
+        "english_equivalent": "b"
+       
+    },
+   
+    "31": {
+        "letter": "ম",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ম।",
+        "type": "consonant",
+        "example_word": "মাছ",
+        "english_equivalent": "m"
+    },
+  
+    "32": {
+        "letter": "ল",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ল।",
+        "type": "consonant",
+        "example_word": "লেবু",
+        "english_equivalent": "l"
+    },
+    "33": {
+        "letter": "শ",
+        "variants": ["ষ", "স"],
+        "sentence": "এই চিহ্নটি বোঝায় শ, ষ বা স।",
+        "type": "consonant",
+        "example_word": "শালিক",
+        "english_equivalent": "sh"
+    },
+    "34": {
+        "letter": "হ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় হ।",
+        "type": "consonant",
+        "example_word": "হাতি",
+        "english_equivalent": "h"
+    },
+ 
+    "35": {
+        "letter": "ং",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ং (অনুস্বার)।",
+        "type": "diacritic",
+        "example_word": "বাংলা",
+        "english_equivalent": "ng"
+    },
+   
+    "36": {
+        "letter": "ঁ",
+        "variants": [],
+        "sentence": "এই চিহ্নটি বোঝায় ঁ (চন্দ্রবিন্দু)।",
+        "type": "diacritic",
+        "example_word": "আঁকা",
+        "english_equivalent": "nasal"
+    },
+    
+  "37": {
+    "letter": "০",
+    "variants": [],
+    "sentence": "এই চিহ্নটি বোঝায় ০।",
+    "type": "diacritic",
+    "example_word": "শূন্য",
+    "english_equivalent": "Zero"
+  },
+  "38": {
+    "letter": "১",
+    "variants": [],
+    "sentence": "এই চিহ্নটি বোঝায় ১।",
+    "type": "diacritic",
+    "example_word": "একতা",
+    "english_equivalent": "One"
+  },
+  "39": {
+    "letter": "২",
+    "variants": [],
+    "sentence": "এই চিহ্নটি বোঝায় ২।",
+    "type": "diacritic",
+    "example_word": "দুইটি",
+    "english_equivalent": "Two"
+  },
+  "40": {
+    "letter": "৩",
+    "variants": [],
+    "sentence": "এই চিহ্নটি বোঝায় ৩।",
+    "type": "diacritic",
+    "example_word": "তিনজন",
+    "english_equivalent": "Three"
+  },
+  "41": {
+    "letter": "৪",
+    "variants": [],
+    "sentence": "এই চিহ্নটি বোঝায় ৪।",
+    "type": "diacritic",
+    "example_word": "চারটি",
+    "english_equivalent": "Four"
+  },
+  "42": {
+    "letter": "৫",
+    "variants": [],
+    "sentence": "এই চিহ্নটি বোঝায় ৫।",
+    "type": "diacritic",
+    "example_word": "পাঁচজন",
+    "english_equivalent": "Five"
+  },
+  "43": {
+    "letter": "৬",
+    "variants": [],
+    "sentence": "এই চিহ্নটি বোঝায় ৬।",
+    "type": "diacritic",
+    "example_word": "ছয়টি",
+    "english_equivalent": "Six"
+  },
+  "44": {
+    "letter": "৭",
+    "variants": [],
+    "sentence": "এই চিহ্নটি বোঝায় ৭।",
+    "type": "diacritic",
+    "example_word": "সাতটি",
+    "english_equivalent": "Seven"
+  },
+  "45": {
+    "letter": "৮",
+    "variants": [],
+    "sentence": "এই চিহ্নটি বোঝায় ৮।",
+    "type": "diacritic",
+    "example_word": "আটটি",
+    "english_equivalent": "Eight"
+  },
+  "46": {
+    "letter": "৯",
+    "variants": [],
+    "sentence": "এই চিহ্নটি বোঝায় ৯।",
+    "type": "diacritic",
+    "example_word": "নয়জন",
+    "english_equivalent": "Nine"
+  }
+}
+
+

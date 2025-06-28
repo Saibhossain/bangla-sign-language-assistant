@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলা সাইন ল্যাঙ্গুয়েজ সনাক্তকরণ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/lode.css">
+</head>
+<body>
+    <nav>
+        <a href="/templates/digit.html">Digit Prediction</a>
+        <a href="/templates/index.html">Alphabet Prediction</a>
+        <a href="/templates/learn.html">Learning Mode</a>
+        <a href="/templates/dashboard.html">← ড্যাশবোর্ডে ফিরে যান</a>
+    </nav>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-hands"></i> বাংলা সাইন ল্যাঙ্গুয়েজ সনাক্তকরণ</h1>
+            <p>রিয়েল-টাইম বাংলা সাইন ল্যাঙ্গুয়েজ চিহ্নিতকরণ সিস্টেম</p>
+        </div>
+
+        <div class="main-content">
+            <div class="video-section">
+                <div class="video-container">
+                    <video id="videoElement" autoplay playsinline muted></video>
+                    <div class="video-overlay">
+                        <div class="status-dot" id="statusDot"></div>
+                        <span id="overlayStatus">সংযোগ করা হচ্ছে...</span>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn" id="toggleCamera">
+                        <i class="fas fa-video"></i> ক্যামেরা বন্ধ
+                    </button>
+                    <button class="btn secondary" id="captureBtn">
+                        <i class="fas fa-camera"></i> ক্যাপচার
+                    </button>
+                    <button class="btn" id="fullscreenBtn">
+                        <i class="fas fa-expand"></i> ফুলস্ক্রিন
+                    </button>
+                    <button class="btn" id="Digit Prediction">
+                        <i class="fas fa-expand"></i> Digit Prediction
+                    </button>
+                </div>
+
+                <div class="settings-panel">
+                    <h4><i class="fas fa-cog"></i> সেটিংস</h4>
+                    <div class="setting-item">
+                        <span>মিরর ভিউ</span>
+                        <div class="toggle-switch active" id="mirrorToggle">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <span>অটো ক্যাপচার</span>
+                        <div class="toggle-switch" id="autoToggle">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="result-card">
+                    <div class="result-title">
+                        <i class="fas fa-magic"></i> সনাক্তকরণ ফলাফল
+                    </div>
+                    <div class="prediction-display" id="predictionText">
+                        অপেক্ষা করুন...
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidenceBar"></div>
+                    </div>
+                    <div class="status-indicator">
+                        <div class="status-dot" id="mainStatusDot"></div>
+                        <span id="statusText">ব্যাকএন্ড সংযোগ করা হচ্ছে...</span>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <h3><i class="fas fa-chart-line"></i> পরিসংখ্যান</h3>
+                    <div class="stat-item">
+                        <span>মোট সনাক্তকরণ:</span>
+                        <strong id="totalPredictions">0</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>নির্ভুলতার হার:</span>
+                        <strong id="accuracyRate">--</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>গড় আত্মবিশ্বাস:</span>
+                        <strong id="avgConfidence">--</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>সেশন সময়:</span>
+                        <strong id="sessionTime">00:00</strong>
+                    </div>
+                </div>
+
+                <div class="history-card">
+                    <h3><i class="fas fa-history"></i> সাম্প্রতিক ইতিহাস</h3>
+                    <div class="history-list" id="historyList">
+                        <div style="text-align: center; color: #7f8c8d; padding: 20px;">
+                            কোন সাম্প্রতিক সনাক্তকরণ নেই
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 বাংলা সাইন ল্যাঙ্গুয়েজ সনাক্তকরণ সিস্টেম | AI দ্বারা চালিত</p>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script src="/static/load.js"></script>
+</body>
+</html>
