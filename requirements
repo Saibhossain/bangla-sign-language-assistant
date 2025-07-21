@@ -1,8 +1,9 @@
-fastapi
-uvicorn
+mediapipe
+opencv-python
 joblib
 jinja2
 scikit-learn
+transformers
 numpy
 gtts
 pyttsx3
@@ -10,4 +11,6 @@ playsound3
 bnlp_toolkit
 bnnumerizer
 pyspellchecker
-(python -m uvicorn bangla_sign_server:app --reload )
+fastapi
+uvicorn
+

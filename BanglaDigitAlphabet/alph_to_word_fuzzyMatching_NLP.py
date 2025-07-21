@@ -1,6 +1,4 @@
-import os, uuid, cv2, json, joblib, time, threading, unicodedata
-import numpy as np
-import mediapipe as mp
+import os, uuid, cv2, json, joblib, time, threading, unicodedata , numpy as np, mediapipe as mp
 from gtts import gTTS
 from playsound3 import playsound
 from collections import deque, Counter
@@ -85,7 +83,6 @@ class WordBuilder:
 
         print(f"[DEBUG] No match found for: {word}")
         return word, False
-
 
 # --------------------- Main ---------------------
 def main():
