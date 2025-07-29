@@ -44,11 +44,22 @@ python -m uvicorn bangla_sign_server:app --reload
 ```
 
 ### Step 3: Open in Browser
-...
+Go to: 
+```bash
+http://127.0.0.1:8000
+```
+You’ll see a live webcam feed with Bangla alphabet prediction and audio feedback.
 
-## 🤝 Contributions
-
-...
 
 ## 📜 License
-...
+### 🔒 `.gitignore` file
+
+```gitignore
+__pycache__/
+*.pyc
+*.pkl
+*.safetensors
+.env
+.DS_Store
+.idea/
+.vscode/
