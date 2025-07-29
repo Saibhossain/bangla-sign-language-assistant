@@ -24,6 +24,31 @@ This project is a real-time Bangla Sign Language recognition tool that uses a we
 .
 ├── bangla_sign_server.py     # FastAPI backend
 ├── templates/index.html      # Web frontend
-├── model/trained_model.pkl   # Pretrained sign classifier
-├── Dataset/hand_feedback_data.json  # Sign metadata
+├── model/bangla_handsign_alphabets_classifier_rf1   # Pretrained sign classifier
+├── Dataset/bangla_signs_dataset.json  # Sign metadata
 ├── requirements.txt
+```
+
+## 🖥️ How to Run
+
+### Step 1: Clone and Install Dependencies
+```bash
+git clone https://github.com/YOUR_USERNAME/bangla-sign-language-assistant.git
+cd bangla-sign-language-assistant
+pip install -r requirements.txt
+```
+
+### Step 2: Start the Server
+```bash
+python -m uvicorn bangla_sign_server:app --reload
+```
+
+### Step 3: Open in Browser
+...
+
+## 🤝 Contributions
+
+...
+
+## 📜 License
+...
