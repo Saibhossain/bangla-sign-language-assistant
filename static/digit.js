@@ -1,131 +1,235 @@
-// ===================== FRONTEND JavaScript =====================
+// ===================== ENHANCED FRONTEND JavaScript =====================
 
-// DOM Elements
-const video = document.getElementById('videoElement');
-const predictionText = document.getElementById('predictionText');
-const statusText = document.getElementById('statusText');
-const statusDot = document.getElementById('statusDot');
-const mainStatusDot = document.getElementById('mainStatusDot');
-const overlayStatus = document.getElementById('overlayStatus');
-const confidenceBar = document.getElementById('confidenceBar');
-const historyList = document.getElementById('historyList');
-const notification = document.getElementById('notification');
-const mirrorToggle = document.getElementById('mirrorToggle');
-const autoToggle = document.getElementById('autoToggle');
+class BanglaSignRecognition {
+    constructor() {
+        this.initializeElements();
+        this.initializeVariables();
+        this.setupEventListeners();
+        this.initializeMediaPipe();
+        this.startSessionTimer();
+        this.connectWebSocket();
+        this.loadStatistics();
+    }
 
-let predictionHistory = [];
-let totalPredictions = 0;
-let sessionStartTime = Date.now();
+    initializeElements() {
+        // Video and prediction elements
+        this.video = document.getElementById('videoElement');
+        this.predictionText = document.getElementById('predictionText');
+        this.statusText = document.getElementById('statusText');
+        this.statusDot = document.getElementById('statusDot');
+        this.mainStatusDot = document.getElementById('mainStatusDot');
+        this.overlayStatus = document.getElementById('overlayStatus');
+        this.confidenceBar = document.getElementById('confidenceBar');
+        this.confidenceValue = document.getElementById('confidenceValue');
+        this.historyList = document.getElementById('historyList');
+        this.notification = document.getElementById('notification');
+        this.currentModeDisplay = document.getElementById('currentMode');
 
-// Load MediaPipe Hands
-const hands = new Hands({locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`});
-hands.setOptions({
-  maxNumHands: 1,
-  modelComplexity: 1,
-  minDetectionConfidence: 0.7,
-  minTrackingConfidence: 0.7
-});
-hands.onResults(onResults);
+        // Controls
+        this.toggleCameraBtn = document.getElementById('toggleCamera');
+        this.captureBtn = document.getElementById('captureBtn');
+        this.fullscreenBtn = document.getElementById('fullscreenBtn');
+        this.handGuideBtn = document.getElementById('handGuideBtn');
 
-const camera = new Camera(video, {
-  onFrame: async () => {
-    await hands.send({image: video});
-  },
-  width: 640,
-  height: 480
-});
-camera.start();
+        // Settings
+        this.mirrorToggle = document.getElementById('mirrorToggle');
+        this.autoToggle = document.getElementById('autoToggle');
+        this.voiceToggle = document.getElementById('voiceToggle');
 
-function onResults(results) {
-  if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
-    const landmarks = results.multiHandLandmarks[0];
-    const flatLandmarks = landmarks.map(lm => [lm.x, lm.y, lm.z]).flat();
+        // Mode buttons
+        this.modeButtons = document.querySelectorAll('.mode-btn');
 
-    fetch('http://localhost:8000/predict', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ landmarks: flatLandmarks })
-    })
-    .then(res => res.json())
-    .then(data => {
-      displayPrediction(data.prediction, data.confidence || 0.85);
-      addToHistory(data.prediction, data.sconfidence || 0);
-      updateStatus('সংযুক্ত ও কার্যকর', true);
-    })
-    .catch(err => {
-      console.error('Prediction error:', err);
-      predictionText.textContent = 'সার্ভার সংযোগ ব্যর্থ';
-      updateStatus('সার্ভার সংযোগ সমস্যা', false);
-    });
-  }
-}
+        // Statistics elements
+        this.totalPredictionsEl = document.getElementById('totalPredictions');
+        this.accuracyRateEl = document.getElementById('accuracyRate');
+        this.avgConfidenceEl = document.getElementById('avgConfidence');
+        this.sessionTimeEl = document.getElementById('sessionTime');
 
-function displayPrediction(prediction, confidence) {
-  predictionText.textContent = prediction;
-  confidenceBar.style.width = `${confidence * 100}%`;
+        // Hand guide
+        this.handGuide = document.getElementById('handGuide');
+        this.guideContent = document.getElementById('guideContent');
+    }
 
-  const confidenceValue = document.getElementById('confidenceValue');
-  if (confidenceValue) {
-    confidenceValue.textContent = `কনফিডেন্স: ${(confidence * 100).toFixed(1)}%`;
-  }
+    initializeVariables() {
+        this.currentMode = 'alphabet';
+        this.predictionHistory = [];
+        this.totalPredictions = 0;
+        this.sessionStartTime = Date.now();
+        this.cameraActive = true;
+        this.autoCapture = false;
+        this.mirrorView = true;
+        this.voiceFeedback = true;
+        this.isFullscreen = false;
+        this.confidence = 0;
+        this.websocket = null;
+        this.hands = null;
+        this.camera = null;
+        this.statistics = {
+            sessionTime: 0,
+            accuracy: 0,
+            avgConfidence: 0,
+            modeStats: {
+                alphabet: { predictions: 0, accuracy: 0 },
+                digit: { predictions: 0, accuracy: 0 },
+                word: { predictions: 0, accuracy: 0 }
+            }
+        };
 
-  if (prediction !== "অনিশ্চিত" && confidence >= 0.6) {
-    totalPredictions++;
-  }
-  updateStats();
-}
+        // API endpoints based on mode
+        this.apiEndpoints = {
+            alphabet: '/prediction',
+            digit: '/prediction/digit',
+            word: '/prediction/word'
+        };
 
-function addToHistory(prediction, confidence = 0) {
-  const historyItem = {
-    char: prediction,
-    confidence: confidence,
-    time: new Date().toLocaleTimeString('bn-BD')
-  };
-  predictionHistory.unshift(historyItem);
-  if (predictionHistory.length > 10) {
-    predictionHistory.pop();
-  }
-  updateHistoryDisplay();
-}
+        this.modeNames = {
+            alphabet: 'বর্ণমালা',
+            digit: 'সংখ্যা',
+            word: 'শব্দ'
+        };
+    }
 
-function updateHistoryDisplay() {
-  if (predictionHistory.length === 0) {
-    historyList.innerHTML = '<div style="text-align: center; color: #7f8c8d; padding: 20px;">কোন সাম্প্রতিক সনাক্তকরণ নেই</div>';
-    return;
-  }
-  historyList.innerHTML = predictionHistory.map(item => `
-    <div class="history-item">
-      <span class="history-char">${item.char}</span>
-      <span class="history-time">${item.time}</span>
-    </div>
-  `).join('');
-}
+    setupEventListeners() {
+        // Mode switching
+        this.modeButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                this.switchMode(e.target.closest('.mode-btn').dataset.mode);
+            });
+        });
 
-function updateStats() {
-  const validPreds = predictionHistory.filter(item => item.char !== "অনিশ্চিত");
-  const count = validPreds.length;
-  let avgConf = 0;
-  if (count > 0) {
-    avgConf = validPreds.reduce((sum, item) => sum + (item.confidence || 0), 0) / count;
-  }
-  document.getElementById('totalPredictions').textContent = totalPredictions;
-  document.getElementById('accuracyRate').textContent = count > 0 ? '৯৫%' : '--';
-  document.getElementById('avgConfidence').textContent = `${(avgConf * 100).toFixed(1)}%`;
-}
+        // Camera controls
+        this.toggleCameraBtn.addEventListener('click', () => this.toggleCamera());
+        this.captureBtn.addEventListener('click', () => this.captureFrame());
+        this.fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
+        this.handGuideBtn.addEventListener('click', () => this.toggleHandGuide());
 
-function updateStatus(message, isActive) {
-  statusText.textContent = message;
-  statusDot.classList.toggle('active', isActive);
-  mainStatusDot.classList.toggle('active', isActive);
-}
+        // Settings toggles
+        this.mirrorToggle.addEventListener('click', () => this.toggleMirror());
+        this.autoToggle.addEventListener('click', () => this.toggleAutoCapture());
+        this.voiceToggle.addEventListener('click', () => this.toggleVoiceFeedback());
 
-function updateSessionTimer() {
-  setInterval(() => {
-    const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
-    const minutes = Math.floor(elapsed / 60);
-    const seconds = elapsed % 60;
-    document.getElementById('sessionTime').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }, 1000);
-}
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case ' ': // Spacebar for capture
+                    e.preventDefault();
+                    this.captureFrame();
+                    break;
+                case 'f': // F for fullscreen
+                case 'F':
+                    this.toggleFullscreen();
+                    break;
+                case 'c': // C for camera toggle
+                case 'C':
+                    this.toggleCamera();
+                    break;
+                case '1':
+                    this.switchMode('alphabet');
+                    break;
+                case '2':
+                    this.switchMode('digit');
+                    break;
+                case '3':
+                    this.switchMode('word');
+                    break;
+            }
+        });
 
-updateSessionTimer();
+        // Window resize handler
+        window.addEventListener('resize', () => {
+            this.handleResize();
+        });
+    }
+
+    async initializeMediaPipe() {
+        try {
+            // Initialize MediaPipe Hands
+            this.hands = new Hands({
+                locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
+            });
+
+            this.hands.setOptions({
+                maxNumHands: 1,
+                modelComplexity: 1,
+                minDetectionConfidence: 0.7,
+                minTrackingConfidence: 0.7
+            });
+
+            this.hands.onResults((results) => this.onResults(results));
+
+            // Initialize camera
+            this.camera = new Camera(this.video, {
+                onFrame: async () => {
+                    if (this.hands && this.cameraActive) {
+                        await this.hands.send({image: this.video});
+                    }
+                },
+                width: 640,
+                height: 480
+            });
+
+            await this.camera.start();
+            this.updateStatus('ক্যামেরা সক্রিয়', true);
+            this.showNotification('ক্যামেরা সফলভাবে চালু হয়েছে', 'success');
+
+        } catch (error) {
+            console.error('MediaPipe initialization error:', error);
+            this.updateStatus('ক্যামেরা ত্রুটি', false);
+            this.showNotification('ক্যামেরা চালু করতে সমস্যা হয়েছে', 'error');
+        }
+    }
+
+    async onResults(results) {
+        if (!this.cameraActive) return;
+
+        if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
+            const landmarks = results.multiHandLandmarks[0];
+            const flatLandmarks = landmarks.map(lm => [lm.x, lm.y, lm.z]).flat();
+
+            // Send prediction request based on current mode
+            try {
+                const response = await fetch(`http://localhost:8000${this.apiEndpoints[this.currentMode]}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    this.processPrediction(data);
+                    this.updateStatus('সংযুক্ত ও কার্যকর', true);
+                } else {
+                    throw new Error('Server response error');
+                }
+            } catch (error) {
+                console.error('Prediction error:', error);
+                this.handlePredictionError();
+            }
+
+            // Auto capture if enabled
+            if (this.autoCapture) {
+                this.captureFrame();
+            }
+        } else {
+            // No hand detected
+            this.predictionText.textContent = 'হাত সনাক্ত করা যায়নি';
+            this.confidenceBar.style.width = '0%';
+            this.confidenceValue.textContent = '--';
+        }
+    }
+
+    processPrediction(data) {
+        const prediction = data.prediction || 'অজানা';
+        const confidence = data.confidence || 0;
+        const handDetected = data.hand_detected || false;
+
+        if (handDetected && prediction !== 'অজানা') {
+            this.displayPrediction(prediction, confidence);
+            this.addToHistory(prediction, confidence);
+            this.updateModeStatistics(prediction, confidence);
+
+            // Voice feedback if enabled
+            if (this.voiceFeedback && confidence > 0.7) {
+                this.speakPrediction(prediction);
+            }
+        } else {
+            this.predictionText.textContent = 'স্পষ্'

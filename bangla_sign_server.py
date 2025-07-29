@@ -1,14 +1,24 @@
-import os, uuid, cv2, json, numpy as np, joblib, mediapipe as mp, time, threading
+# ===================== BACKEND Python (FastAPI) =====================
+import os, uuid, json, joblib, time, threading,  numpy as np
+import kagglehub
+from collections import deque, Counter
 from gtts import gTTS
 from playsound3 import playsound
-from collections import deque, Counter
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, HTMLResponse, FileResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
+import warnings
+from BanglaDigitAlphabet.alph_to_word_fuzzyMatching_NLP import WordBuilder, valid_words
+
+warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
+
+word_builder = WordBuilder()
+warnings.filterwarnings("ignore", message="X does not have valid feature names")
 
 # ---------- Load Bangla Dataset ----------
-with open("bangla_signs_dataset.json", "r", encoding="utf-8") as f:
+with open("../BSL_Learning_Tool/bangla_signs_dataset.json", "r", encoding="utf-8") as f:
     bangla_dataset = json.load(f)
 
 def get_speech_text(pred):
@@ -28,74 +38,29 @@ def speak_bangla(text):
             print(f"Error speaking Bangla: {e}")
     threading.Thread(target=speak_thread, daemon=True).start()
 
-# ---------- Shared Prediction Store ----------
-shared_prediction = {"prediction": ""}
+# ---------- Prediction API ----------
+class LandmarkInput(BaseModel):
+    landmarks: list[float]
 
-# ---------- ML Model and Hand Detector ----------
-def load_model(path):
-    return joblib.load(path)
 
-def init_hand_detector():
-    return mp.solutions.hands.Hands(
-        static_image_mode=False,
-        max_num_hands=1,
-        min_detection_confidence=0.7
-    )
+# Download latest version
+path = kagglehub.model_download("saibhossain/bangla_handsign_alphabets_classifier_rf1/scikitLearn/default")
+print("Path to model files:", path)
+filename = "HandSign_Classifier_Alphabets_RF.pkl"
+model_path = os.path.join(path, filename)
+model = joblib.load(model_path)
 
-def extract_landmark_features(landmarks):
-    return np.array([[lm.x, lm.y, lm.z] for lm in landmarks.landmark]).flatten()
 
-# ---------- Background Worker ----------
-def run_recognition():
-    model = load_model("model/HandSign_Classifier_Alphabets_RF.pkl")
-    hands = init_hand_detector()
-    mp_drawing = mp.solutions.drawing_utils
 
-    cap = cv2.VideoCapture(0)
-    pred_queue = deque(maxlen=10)
-    last_pred_time = 0
-    delay_between_preds = 10  # seconds
+shared_prediction = {
+    "prediction": "",
+    "letter": "",
+    "word": "",
+    "sentence": "",
+    "confidence": 0.0
+}
 
-    while cap.isOpened():
-        ret, frame = cap.read()
-        if not ret:
-            break
-
-        frame = cv2.flip(frame, 1)
-        rgb_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        results = hands.process(rgb_image)
-        current_time = time.time()
-
-        if results.multi_hand_landmarks:
-            for hand_landmarks in results.multi_hand_landmarks:
-                mp_drawing.draw_landmarks(frame, hand_landmarks, mp.solutions.hands.HAND_CONNECTIONS)
-                features = extract_landmark_features(hand_landmarks)
-                if features.shape[0] == 63:
-                    X = features.reshape(1, -1)
-                    pred = model.predict(X)[0]
-                    pred_queue.append(pred)
-
-                    if current_time - last_pred_time >= delay_between_preds:
-                        common_pred, count = Counter(pred_queue).most_common(1)[0]
-                        if count >= 8:
-                            sentence = get_speech_text(common_pred)
-                            speak_bangla(sentence)
-                            shared_prediction["prediction"] = bangla_dataset.get(str(common_pred), {}).get("letter", "Unknown")
-                        else:
-                            speak_bangla("আপনার হাতটি সঠিকভাবে দেখান।")
-                            shared_prediction["prediction"] = "Uncertain"
-
-                        last_pred_time = current_time
-
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-    cap.release()
-    cv2.destroyAllWindows()
-
-# ---------- FastAPI App ----------
 app = FastAPI()
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -104,22 +69,95 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Serve static HTML file
 app.mount("/templates", StaticFiles(directory="templates"), name="templates")
 
 @app.get("/")
 def serve_home():
-    return FileResponse("templates/index.html")
+    return FileResponse("../BSL_Learning_Tool/templates/index.html")
 
-@app.get("/prediction")
-def get_prediction():
-    return JSONResponse(content=shared_prediction)
+# ---------- ESP ----------
+class DistanceData(BaseModel):
+    distance: float
 
-# ---------- Startup ----------
-@app.on_event("startup")
-def start_background_task():
-    threading.Thread(target=run_recognition, daemon=True).start()
+@app.post("/distance_data")
+async def receive_distance(data: DistanceData):
+    distance = data.distance
+    print(f"📥 Distance from ESP32: {distance:.2f} cm")
 
-@app.get("/")
-def serve_index():
-    return FileResponse("templates/index.html")
+    response_data = {
+        "distance": distance,
+        "prediction": shared_prediction.get("prediction", ""),
+        "letter": shared_prediction.get("letter", ""),
+        "word": shared_prediction.get("word", ""),
+        "sentence": shared_prediction.get("sentence", "")
+    }
+
+    return response_data
+
+@app.post("/predict")
+def predict(input: LandmarkInput):
+    current_time = time.time()
+    delay_between_preds = 7
+    word_gap_timeout = 7
+
+    # Create global state once
+    if not hasattr(predict, "last_pred_time"):
+        predict.last_pred_time = 0
+        predict.last_word_time = 0
+        predict.pred_queue = deque(maxlen=8)
+
+    try:
+        if len(input.landmarks) != 63:
+            return JSONResponse(status_code=400, content={"error": "Invalid landmark shape"})
+
+        X = np.array(input.landmarks).reshape(1, -1)
+        pred_proba = model.predict_proba(X)[0]
+        pred_idx = np.argmax(pred_proba)
+        confidence = float(pred_proba[pred_idx])
+
+        raw_pred = str(model.classes_[pred_idx])
+        letter_pred = bangla_dataset.get(raw_pred, {}).get("letter", raw_pred)
+
+
+
+        predict.pred_queue.append((letter_pred, confidence))
+
+        most_common_letter = ""
+        if current_time - predict.last_pred_time >= delay_between_preds:
+            common_preds = Counter([p for p, _ in predict.pred_queue])
+            most_common_letter, count = common_preds.most_common(1)[0]
+
+            if count >= 6:
+                word_builder.add_letter(most_common_letter)
+                print(f"➕ Letter added: {most_common_letter}")
+                predict.last_word_time = current_time
+            else:
+                print("🟡 Low confidence, skipping letter.")
+
+            predict.last_pred_time = current_time
+
+        if current_time - predict.last_word_time >= word_gap_timeout and word_builder.letter_buffer:
+            word = word_builder.commit_word()
+            matched_word, success = word_builder.try_add_word(word, valid_words)
+            if success:
+                print(f"✅ Final Word: {matched_word}")
+                speak_bangla(matched_word)
+            else:
+                print(f"❌ Invalid word: {matched_word}")
+                speak_bangla("অবৈধ শব্দ")
+
+        current_word = ''.join(word_builder.letter_buffer)
+        sentence = word_builder.get_sentence()
+
+        shared_prediction.update({
+            "prediction": letter_pred,
+            "letter": most_common_letter,
+            "word": current_word,
+            "sentence": sentence,
+            "confidence": round(confidence * 100, 2)
+        })
+
+        return shared_prediction
+
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": str(e)})

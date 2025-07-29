@@ -23,7 +23,7 @@
         <div class="main-content">
             <div class="video-section">
                 <div class="video-container">
-                    <video id="videoElement" autoplay playsinline muted></video>
+                    <video id="videoElement" autoplay playsinline style="width: 640px; height: 480px;"></video>
                     <div class="video-overlay">
                         <div class="status-dot" id="statusDot"></div>
                         <span id="overlayStatus">সংযোগ করা হচ্ছে...</span>
@@ -80,6 +80,22 @@
                 </div>
 
                 <div class="stats-card">
+                    <h3><i class="fas fa-chart-line"></i>Live সনাক্তকরণ</h3>
+                    <div class="stat-item">
+                        <span>বর্তমান অক্ষর:</span>
+                        <strong id="mostCommonLetter">--</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>গঠিত অক্ষর:</span>
+                        <strong id="currentWord">--</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>সম্পূর্ণ শব্দ:</span>
+                        <strong id="finalSentence">--</strong>
+                    </div>
+               </div>
+
+                <div class="stats-card">
                     <h3><i class="fas fa-chart-line"></i> পরিসংখ্যান</h3>
                     <div class="stat-item">
                         <span>মোট সনাক্তকরণ:</span>
@@ -116,6 +132,11 @@
     </div>
 
     <div class="notification" id="notification"></div>
+
+    <!-- MediaPipe Hands & Drawing Utils -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
 
     <script src="/static/load.js"></script>
 </body>

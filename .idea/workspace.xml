@@ -4,32 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80bea1d2-4550-4a57-9b47-950d47cbebeb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/MicroProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/alph_to_word_fuzzyMatching_NLP.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/alphabet_to_speech.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/digit_to_speech_TTS.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/info.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/nlp_alphabet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/tim.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bangla_sign_server.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bangla_signs_dataset.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bangla_words" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/HandSign_Classifier_Alphabets_RF.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/hand_digit_classifier_sorted1.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/dashboard.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/load.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/lode.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/digit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+    <list default="true" id="80bea1d2-4550-4a57-9b47-950d47cbebeb" name="Changes" comment="Initial commit">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bangla-font/Potro Sans Bangla Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bangla-font/Potro Sans Bangla Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BanglaDigitAlphabet/alph_to_word_fuzzyMatching_NLP.py" beforeDir="false" afterPath="$PROJECT_DIR$/BanglaDigitAlphabet/alph_to_word_fuzzyMatching_NLP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BanglaDigitAlphabet/alphabet_to_speech.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BanglaDigitAlphabet/digit_to_speech_TTS.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BanglaDigitAlphabet/info.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BanglaDigitAlphabet/nlp_alphabet.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BanglaDigitAlphabet/tim.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bangla_alp_dig_vibration_patter.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bangla_sign_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/bangla_sign_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/hand_digit_classifier_sorted1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements" beforeDir="false" afterPath="$PROJECT_DIR$/requirements" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/digit.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/digit.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/digit.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/digit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/load.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/load.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/digit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/digit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +42,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Saibhossain&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Saibhossain/BSL_Learning_Tool.git&quot;,
+    &quot;accountId&quot;: &quot;4341021b-eb9a-4177-b870-6f4799afa684&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -66,9 +73,10 @@
     "Python.digit_to_speech_TTS.executor": "Run",
     "Python.info.executor": "Run",
     "Python.nlp_alphabet.executor": "Run",
+    "Python.tim.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/mdsaibhossain/code/python/MicroProject/static",
+    "last_opened_file_path": "/Users/mdsaibhossain/code/python/MicroProject",
     "settings.editor.selected.configurable": "configurable.group.tools"
   },
   "keyToStringList": {
@@ -79,18 +87,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/templates" />
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/BanglaDigitAlphabet" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.alph_to_word_fuzzyMatching_NLP">
+  <component name="RunManager" selected="Python.tim">
     <configuration name="alph_to_word_fuzzyMatching_NLP" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MicroProject" />
       <option name="ENV_FILES" value="" />
@@ -105,28 +113,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BanglaDigitAlphabet/alph_to_word_fuzzyMatching_NLP.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="alphabet_to_speech" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="MicroProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BanglaDigitAlphabet" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BanglaDigitAlphabet/alphabet_to_speech.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -201,13 +187,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="tim" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MicroProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BanglaDigitAlphabet" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BanglaDigitAlphabet/tim.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.alph_to_word_fuzzyMatching_NLP" />
-        <item itemvalue="Python.nlp_alphabet" />
-        <item itemvalue="Python.alphabet_to_speech" />
+        <item itemvalue="Python.tim" />
         <item itemvalue="Python.info" />
+        <item itemvalue="Python.alph_to_word_fuzzyMatching_NLP" />
         <item itemvalue="Python.bangla_sign_server" />
+        <item itemvalue="Python.nlp_alphabet" />
       </list>
     </recent_temporary>
   </component>
@@ -227,6 +235,27 @@
       <option name="presentableId" value="Default" />
       <updated>1750911395985</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1751108919284</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1751108919284</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1751108962069</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1751108962069</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
 </project>

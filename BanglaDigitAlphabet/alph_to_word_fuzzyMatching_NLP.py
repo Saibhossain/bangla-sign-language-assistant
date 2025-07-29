@@ -8,11 +8,11 @@ warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
 
 
 # --------------------- Load Bangla Sign Dataset ---------------------
-with open("/Users/mdsaibhossain/code/python/MicroProject/bangla_signs_dataset.json", "r", encoding="utf-8") as f:
+with open("/Users/mdsaibhossain/code/python/BSL_Learning_Tool/bangla_signs_dataset.json", "r", encoding="utf-8") as f:
     bangla_dataset = json.load(f)
 
 # Load optional custom word list
-with open("/Users/mdsaibhossain/code/python/MicroProject/bangla_words", "r", encoding="utf-8") as f:
+with open("/Users/mdsaibhossain/code/python/BSL_Learning_Tool/bangla_words", "r", encoding="utf-8") as f:
     valid_words = set(line.strip() for line in f)
 
 # --------------------- Speech ---------------------
@@ -83,90 +83,3 @@ class WordBuilder:
 
         print(f"[DEBUG] No match found for: {word}")
         return word, False
-
-# --------------------- Main ---------------------
-def main():
-    model_path = "/Users/mdsaibhossain/code/python/MicroProject/model/HandSign_Classifier_Alphabets_RF.pkl"
-    model = load_model(model_path)
-    hands = init_hand_detector()
-    mp_drawing = mp.solutions.drawing_utils
-
-    cap = cv2.VideoCapture(0)
-    print("Press 'q' to quit.")
-
-    last_pred_time = 0
-    last_word_time = 0
-    word_gap_timeout = 7  # seconds to consider word break
-    delay_between_preds = 7
-    pred_queue = deque(maxlen=8)
-    word_builder = WordBuilder()
-
-    while cap.isOpened():
-        ret, frame = cap.read()
-        if not ret:
-            break
-
-        frame = cv2.flip(frame, 1)
-        rgb_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        results = hands.process(rgb_image)
-        current_time = time.time()
-
-        if results.multi_hand_landmarks:
-            for hand_landmarks in results.multi_hand_landmarks:
-                mp_drawing.draw_landmarks(frame, hand_landmarks, mp.solutions.hands.HAND_CONNECTIONS)
-
-                features = extract_landmark_features(hand_landmarks)
-                if features.shape[0] == 63:
-                    X = features.reshape(1, -1)
-                    pred_proba = model.predict_proba(X)[0]
-                    pred_idx = np.argmax(pred_proba)
-                    confidence = pred_proba[pred_idx]
-
-                    raw_pred = str(model.classes_[pred_idx])
-                    letter_pred = bangla_dataset.get(raw_pred, {}).get("letter", raw_pred)
-
-                    pred_queue.append((letter_pred, confidence))
-
-                    if current_time - last_pred_time >= delay_between_preds:
-                        common_preds = Counter([p for p, _ in pred_queue])
-                        most_common_letter, count = common_preds.most_common(1)[0]
-
-                        if count >= 6:
-                            word_builder.add_letter(most_common_letter)
-                            print(f"➕ Letter added: {most_common_letter}")
-                            last_word_time = current_time
-                        else:
-                            print("🟡 Low confidence, skipping letter.")
-
-                        last_pred_time = current_time
-
-        # Check for word boundary (pause in signing)
-        if current_time - last_word_time >= word_gap_timeout and word_builder.letter_buffer:
-            word = word_builder.commit_word()
-            matched_word, success = word_builder.try_add_word(word, valid_words)
-            if success:
-                print(f"✅ Final Word: {matched_word}")
-                speak_bangla(matched_word)
-            else:
-                print(f"❌ Invalid word: {matched_word}")
-                speak_bangla("অবৈধ শব্দ")
-
-        # Overlay current letter buffer + sentence
-        current_word = ''.join(word_builder.letter_buffer)
-        sentence = word_builder.get_sentence()
-
-        cv2.putText(frame, f'Current Word: {current_word}', (10, 420),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
-        cv2.putText(frame, f'Sentence: {sentence}', (10, 460),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
-
-        cv2.imshow("Bangla Sign Recognition", frame)
-
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-    cap.release()
-    cv2.destroyAllWindows()
-
-if __name__ == "__main__":
-    main()

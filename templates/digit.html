@@ -1,182 +1,176 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>বাংলা সাইন ল্যাঙ্গুয়েজ সহায়ক</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #121212;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #1e1e1e;
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    nav {
-      background-color: #2c3e50;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 6px;
-      background-color: #34495e;
-    }
-    nav a:hover {
-      background-color: #3d5a73;
-    }
-    main {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
-      padding: 20px;
-    }
-    video {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
-    .controls {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-    button {
-      background-color: #2c3e50;
-      color: white;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-    button:hover {
-      background-color: #34495e;
-    }
-    .panel {
-      background-color: #1e1e1e;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.1);
-    }
-    .stat-item, .history-item {
-      margin: 10px 0;
-      display: flex;
-      justify-content: space-between;
-    }
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-    .tabs button {
-      flex: 1;
-    }
-    .hidden {
-      display: none;
-    }
-    .notification {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 12px 20px;
-      background-color: #27ae60;
-      border-radius: 5px;
-      color: white;
-      opacity: 0.9;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলা সাইন ল্যাঙ্গুয়েজ সনাক্তকরণ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/static/digit.css">
 </head>
 <body>
-  <header>বাংলা সাইন ভাষা সহায়ক সিস্টেম</header>
-  <nav>
-    <a href="/templates/digit.html">Digit Prediction</a>
-    <a href="/templates/index.html">Alphabet Prediction</a>
-    <a href="/templates/learn.html">Learning Mode</a>
-    <a href="/templates/dashboard.html">← ড্যাশবোর্ডে ফিরে যান</a>
-  </nav>
-  <main>
-    <section>
-      <video id="videoElement" autoplay muted playsinline></video>
-      <div class="controls">
-        <button id="toggleCamera"><i class="fas fa-video"></i> ক্যামেরা বন্ধ</button>
-        <button id="captureBtn"><i class="fas fa-camera"></i> ক্যাপচার</button>
-        <button id="fullscreenBtn"><i class="fas fa-expand"></i> ফুলস্ক্রিন</button>
-        <button id="mirrorToggle"><i class="fas fa-arrows-alt-h"></i> আয়না</button>
-        <button id="autoToggle"><i class="fas fa-robot"></i> অটো ক্যাপচার</button>
-      </div>
-      <div class="panel">
-        <h3>সনাক্ত ফলাফল</h3>
-        <div><strong id="predictionText">প্রেডিকশনের অপেক্ষায়...</strong></div>
-        <div>কনফিডেন্স: <span id="confidenceValue">--</span></div>
-        <div style="background:#555; height: 8px; border-radius: 5px; overflow:hidden">
-          <div id="confidenceBar" style="height: 100%; width: 0%; background:#27ae60;"></div>
+    <div class="container">lode.css
+        <div class="header">
+            <h1><i class="fas fa-hands"></i> বাংলা সাইন ল্যাঙ্গুয়েজ সনাক্তকরণ</h1>
+            <p>রিয়েল-টাইম বাংলা সাইন ল্যাঙ্গুয়েজ চিহ্নিতকরণ সিস্টেম</p>
+
+            <div class="mode-selector">
+                <button class="mode-btn active" data-mode="alphabet">
+                    <i class="fas fa-font"></i> বর্ণমালা
+                </button>
+                <button class="mode-btn" data-mode="digit">
+                    <i class="fas fa-hashtag"></i> সংখ্যা
+                </button>
+                <button class="mode-btn" data-mode="word">
+                    <i class="fas fa-spell-check"></i> শব্দ
+                </button>
+            </div>
         </div>
-      </div>
-    </section>
-    <section class="panel">
-      <div class="tabs">
-        <button onclick="showTab('statsTab')">পরিসংখ্যান</button>
-        <button onclick="showTab('historyTab')">ইতিহাস</button>
-        <button onclick="showTab('trainTab')">শেখা</button>
-      </div>
-      <div id="statsTab">
-        <h3><i class="fas fa-chart-line"></i> পরিসংখ্যান</h3>
-        <div class="stat-item">
-          <span>মোট সনাক্তকরণ:</span>
-          <strong id="totalPredictions">0</strong>
+
+        <div class="main-section">
+            <div class="video-container">
+                <video id="videoElement" autoplay playsinline></video>
+                <div class="video-overlay">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="overlayStatus">সংযোগ করা হচ্ছে...</span>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="btn" id="toggleCamera">
+                    <i class="fas fa-video"></i> ক্যামেরা বন্ধ
+                </button>
+                <button class="btn secondary" id="captureBtn">
+                    <i class="fas fa-camera"></i> ক্যাপচার
+                </button>
+                <button class="btn" id="fullscreenBtn">
+                    <i class="fas fa-expand"></i> ফুলস্ক্রিন
+                </button>
+                <button class="btn" id="handGuideBtn">
+                    <i class="fas fa-hand-paper"></i> হ্যান্ড গাইড
+                </button>
+            </div>
+
+            <div class="settings-panel">
+                <h4><i class="fas fa-cog"></i> সেটিংস</h4>
+                <div class="setting-item">
+                    <span>মিরর ভিউ</span>
+                    <div class="toggle-switch active" id="mirrorToggle">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <span>অটো ক্যাপচার</span>
+                    <div class="toggle-switch" id="autoToggle">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <span>ভয়েস ফিডব্যাক</span>
+                    <div class="toggle-switch active" id="voiceToggle">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hand-guide" id="handGuide">
+                <h4><i class="fas fa-hand-paper"></i> হ্যান্ড গাইড</h4>
+                <div class="guide-content active" id="guideContent">
+                    <p>সঠিক হাতের অবস্থানের জন্য গাইড এখানে প্রদর্শিত হবে।</p>
+                    <div class="guide-tips">
+                        <div class="guide-tip">
+                            <i class="fas fa-lightbulb"></i> হাতটি ক্যামেরার সামনে স্পষ্টভাবে রাখুন
+                        </div>
+                        <div class="guide-tip">
+                            <i class="fas fa-sun"></i> পর্যাপ্ত আলো নিশ্চিত করুন
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="stat-item">
-          <span>নির্ভুলতার হার:</span>
-          <strong id="accuracyRate">--</strong>
+
+        <div class="sidebar">
+            <div class="card">
+                <div class="result-title">
+                    <i class="fas fa-magic"></i> সনাক্তকরণ ফলাফল
+                </div>
+                <div class="prediction-display" id="predictionText">
+                    অপেক্ষা করুন...
+                </div>
+
+                <div class="confidence-container">
+                    <div class="confidence-label">
+                        <span>আত্মবিশ্বাসের মাত্রা</span>
+                        <span id="confidenceValue">--</span>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidenceBar"></div>
+                    </div>
+                </div>
+
+                <div class="status-indicator">
+                    <div class="status-dot" id="mainStatusDot"></div>
+                    <span id="statusText">ব্যাকএন্ড সংযোগ করা হচ্ছে...</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-chart-line"></i>Live সনাক্তকরণ</h3>
+                <div class="stat-item">
+                    <span>বর্তমান অক্ষর:</span>
+                    <strong id="mostCommonLetter">--</strong>
+                </div>
+                <div class="stat-item">
+                    <span>গঠিত অক্ষর:</span>
+                    <strong id="currentWord">--</strong>
+                </div>
+                <div class="stat-item">
+                    <span>সম্পূর্ণ শব্দ:</span>
+                    <strong id="finalSentence">--</strong>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-chart-line"></i> পরিসংখ্যান</h3>
+                <div class="stat-item">
+                    <span>মোট সনাক্তকরণ:</span>
+                    <strong id="totalPredictions">0</strong>
+                </div>
+                <div class="stat-item">
+                    <span>নির্ভুলতার হার:</span>
+                    <strong id="accuracyRate">--</strong>
+                </div>
+                <div class="stat-item">
+                    <span>গড় আত্মবিশ্বাস:</span>
+                    <strong id="avgConfidence">--</strong>
+                </div>
+                <div class="stat-item">
+                    <span>সেশন সময়:</span>
+                    <strong id="sessionTime">00:00</strong>
+                </div>
+                <div class="stat-item">
+                    <span>বর্তমান মোড:</span>
+                    <strong id="currentMode">বর্ণমালা</strong>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-history"></i> সাম্প্রতিক ইতিহাস</h3>
+                <div class="history-list" id="historyList">
+                    <div style="text-align: center; color: #7f8c8d; padding: 20px;">
+                        কোন সাম্প্রতিক সনাক্তকরণ নেই
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="stat-item">
-          <span>গড় আত্মবিশ্বাস:</span>
-          <strong id="avgConfidence">--</strong>
-        </div>
-        <div class="stat-item">
-          <span>সেশন সময়:</span>
-          <strong id="sessionTime">00:00</strong>
-        </div>
-      </div>
-      <div id="historyTab" class="hidden">
-        <h3><i class="fas fa-history"></i> ইতিহাস</h3>
-        <div id="historyList"></div>
-      </div>
-      <div id="trainTab" class="hidden">
-        <h3><i class="fas fa-upload"></i> সাইন শেখানো</h3>
-        <form id="trainForm">
-          <input type="file" name="image" accept="image/*" required />
-          <input type="text" name="label" placeholder="লেবেল দিন" required />
-          <button type="submit">আপলোড</button>
-        </form>
-        <div id="trainStatus"></div>
-      </div>
-    </section>
-  </main>
-  <div class="notification" id="notification" style="display:none"></div>
-  <script>
-    function showTab(id) {
-      document.querySelectorAll('.panel > div').forEach(div => div.classList.add('hidden'));
-      document.getElementById(id).classList.remove('hidden');
-    }
-  </script>
-  <script src="/static/load.js"></script>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <!-- MediaPipe Hands & Drawing Utils -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+
+    <script src="/static/load.js"></script>
 </body>
 </html>
