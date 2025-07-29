@@ -1,3 +1,4 @@
 ../BSL_Learning_Tool/model/HandSign_Classifier_Alphabets_RF.pkl
 ../BSL_Learning_Tool/model/HandSign_Classifier_Alphabets_RF.pkl
 ../BSL_Learning_Tool/model/HandSign_Classifier_Alphabets_RF.pkl
+model/*.pkl
